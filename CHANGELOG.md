@@ -1,5 +1,9 @@
 ## Changelog
 
+### 3.9.2+dpx2
+  * Bugfix: Using name instead of shortname in client definition for filename, firewall rule and
+    huntgroup to allow the same shortname for different clients
+
 ### 3.9.2
   * Bugfix: Restart FreeRADIUS after any huntgroups modification
 
