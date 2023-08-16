@@ -1,5 +1,9 @@
 ## Changelog
 
+### 3.9.2+dpx3
+  * Bugfix: Fix spec test for client definition
+  * Merge Upstream changes from main for stdlib 9.x support
+
 ### 3.9.2+dpx2
   * Bugfix: Using name instead of shortname in client definition for filename, firewall rule and
     huntgroup to allow the same shortname for different clients
