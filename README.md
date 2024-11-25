@@ -138,6 +138,9 @@ Add a syslog rule (using the `saz/rsyslog` module). Default: `false`.
 ##### `log_auth`
 Log authentication requests (yes/no). Default: `no`.
 
+##### `allow_vulnerable_openssl`
+Allow the server to start with versions of OpenSSL known to have critical vulnerabilities. (yes/no). Default: `yes`.
+
 ##### `package_ensure`
 Choose whether the package is just installed and left (`installed`), or updated every Puppet run (`latest`). Default: `installed`
 
@@ -167,7 +170,7 @@ The shared secret for the status server. Required.
 The port to listen for status requests on. Default: `18121`
 
 ##### `listen`
-The address to listen on. Defaults to listen on all addresses but you could set this to `$::ipaddress` or `127.0.0.1`.  Default: `*`
+The address to listen on. Defaults to listen on all addresses but you could set this to `$facts['networking]['ip']` or `127.0.0.1`.  Default: `*`
 
 ```puppet
   # Enable status server

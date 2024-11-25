@@ -37,19 +37,18 @@ define freeradius::client (
   Variant[Array, Hash, String] $attributes           = [],
   Optional[String] $huntgroups                       = undef,
 ) {
-  $fr_package  = $::freeradius::params::fr_package
-  $fr_service  = $::freeradius::params::fr_service
   $fr_basepath = $::freeradius::params::fr_basepath
   $fr_group    = $::freeradius::params::fr_group
 
-  file { "${fr_basepath}/clients.d/${name}.conf":
+  file { "freeradius clients.d/${name}.conf":
     ensure  => $ensure,
+    path    => "${fr_basepath}/clients.d/${name}.conf",
     mode    => '0640',
     owner   => 'root',
     group   => $fr_group,
     content => template('freeradius/client.conf.erb'),
-    require => [File["${fr_basepath}/clients.d"], Group[$fr_group]],
-    notify  => Service[$fr_service],
+    require => [File['freeradius clients.d'], Group['radiusd']],
+    notify  => Service['radiusd'],
   }
 
   if ($firewall and $ensure == 'present') {
@@ -62,17 +61,18 @@ define freeradius::client (
     if $port {
       if $ip {
         firewall { "100 ${name} ${port_description} v4":
-          proto  => 'udp',
-          dport  => $port,
-          action => 'accept',
-          source => $ip,
+          proto    => 'udp',
+          dport    => $port,
+          jump     => 'ACCEPT',
+          protocol => 'IPv4',
+          source   => $ip,
         }
       } elsif $ip6 {
         firewall { "100 ${name} ${port_description} v6":
           proto    => 'udp',
           dport    => $port,
-          action   => 'accept',
-          provider => 'ip6tables',
+          jump     => 'ACCEPT',
+          protocol => 'IPv6',
           source   => $ip6,
         }
       }

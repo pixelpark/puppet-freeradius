@@ -62,6 +62,8 @@ define freeradius::module::ldap (
   Integer $lifetime                                                   = 0,
   Integer $idle_timeout                                               = 60,
   Optional[Float] $connect_timeout                                    = undef,
+  Integer $net_timeout                                                = 1,
+
 ) {
   $fr_package          = $::freeradius::params::fr_package
   $fr_service          = $::freeradius::params::fr_service
@@ -74,7 +76,7 @@ define freeradius::module::ldap (
   # FR3.1 format server = 'ldap1.example.com'
   #              server = 'ldap2.example.com'
   #              server = 'ldap3.example.com'
-  $serverconcatarray = $::freeradius_version ? {
+  $serverconcatarray = $facts['freeradius_version'] ? {
     /^3\.0\./ => any2array(join($server, ',')),
     default   => $server,
   }
@@ -153,8 +155,9 @@ define freeradius::module::ldap (
   }
 
   # Generate a module config, based on ldap.conf
-  file { "${fr_basepath}/mods-available/${name}":
+  file { "freeradius mods-available/${name}":
     ensure  => $ensure,
+    path    => "${fr_basepath}/mods-available/${name}",
     mode    => '0640',
     owner   => 'root',
     group   => $fr_group,
@@ -162,8 +165,9 @@ define freeradius::module::ldap (
     require => [Package[$fr_package], Group[$fr_group]],
     notify  => Service[$fr_service],
   }
-  file { "${fr_modulepath}/${name}":
+  file { "freeradius mods-enabled/${name}":
     ensure => link,
+    path   => "${fr_modulepath}/${name}",
     target => "../mods-available/${name}",
   }
 }
