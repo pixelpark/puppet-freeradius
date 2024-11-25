@@ -2,6 +2,71 @@
 
 Please refer to the [GitHub releases page](https://github.com/djjudas21/puppet-freeradius/releases) for the changelog for 4.0.0 and onwards
 
+### 4.0.1+dpx1
+  * Merge upstream/main into pp-main
+
+### 4.0.1
+ * Version 4.0.1 fix Puppet 8 compatibility, replace classic facts by @jorhett in #223
+ * Bugfix cannot reassign variable fr_service by @jorhett in #224
+ * Ubuntu 24 and systemd puppet compatibility increment by @deligatedgeek in #229
+ * Fix params.pp missing $ on fact lookup line 95 and following by @deligatedgeek in #230
+ * Policy file content option for using templates by @deligatedgeek in #231
+ * Increasing timeout for response from LDAP server by @deligatedgeek in #233
+ * Remove subdirectories of $purged_dirs by @deligatedgeek in #234
+
+### 4.0.0
+ * parametrize max_request_time by @rotanid in #137
+ * Update PDK to 1.18.1 and re-work tests by @nward in #141
+ * Ubuntu 20.04 support by @steadramon in #145
+ * Add support for homeserver check_timeout by @steadramon in #146
+ * Fix interpolation - '' -> "" by @steadramon in #148
+ * quote ldap password by @oasys in #150
+ * parameterize syslog_facility by @oasys in #151
+ * Add linebreak after lifetime attribute by @gonzocrazy in #152
+ * Add quotes around expected LDAP password in freeradius::ldap spec by @nward in #154
+ * Set ownership for radacct and radius log dir by @nward in #153
+ * Fix all current validation errors by @nward in #149
+ * Make FreeRADIUS 3.0.21 the target version for config by @nward in #142
+ * Fix client attributes so that hashes and arrays work correctly by @nward in #158
+ * Sanity check secrets in freeradius::client by @nward in #163
+ * Add support for installing and managing radsniff by @nward in #157
+ * Use ensure_newline for concats fragments by @nward in #164
+ * Add virtual servers to listeners and add 'relaxed' option to attr_filter by @JanderII in #167
+ * Fix capitalisation of PIDFile by @nward in #165
+ * Wrap secrets and passwords in quotes by @nward in #166
+ * Update to PDK 2.1.0 by @nward in #159
+ * add Rocky to list of Redhat-dists by @sircubbi in #169
+ * Update puppetlabs/firewall to allow any version less than 3.0.0 by @deligatedgeek in #170
+ * Allow client param $port to be an integer or an array by @nward in #160
+ * Add module name to detail.erb by @deligatedgeek in #172
+ * ldap module template by @deligatedgeek in #173
+ * Fix typo in freeradius::client spec by @nward in #174
+ * Update to PDK 2.4.0 by @nward in #175
+ * Add github workflow to run PDK tests by @nward in #176
+ * Update PDK by @sircubbi in #181
+ * add support for EL9 (RedHat, Rocky and AlmaLinux) by @sircubbi in #182
+ * add support for ubuntu 22.04 by @mxr0 in #186
+ * bump for stdlib 9 by @sircubbi in #192
+ * Fix ldap config update section by @nward in #190
+ * chore: update pdk to 2.7.1 by @nward in #188
+ * Debian 11 support by @thtomate in #179
+ * Update PDK to 3.0.0 by @nward in #196
+ * Make devcontainer work on non-x86_64 by @nward in #197
+ * Use name instead of shortname for client definition by @cruelsmith in #198
+ * Rework resources to have OS-independent names by @nward in #191
+ * Bump minimum stdlib version to be 4.25.0 by @sircubbi in #193
+ * Update to latest GitHub Actions by @djjudas21 in #204
+ * Rocky 8 support by @djjudas21 in #194
+ * Allow puppet 8, require puppet 7, update module dependencies by @nward in #207
+ * Fix locking in freeradius::module::detail by @amateo in #211
+ * Individual SNMP trap enabling by @deligatedgeek in #212
+ * improvment: add a new parameter to allow the use of vulnerable SSL/TL… by @JGodin-C2C in #215
+ * fix: allow vulnerable ssl versions by @JGodin-C2C in #216
+ * Remove is_ip_address function removed from stdlib in 9.x by @coreone in #217
+ * Update calls to firewall module by @nward in #219
+ * Fix link target for sites-enabled by @nward in #209
+ * Publish on new release only by @djjudas21 in #220
+
 ### 3.9.2+dpx3
   * Bugfix: Fix spec test for client definition
   * Merge Upstream changes from main for stdlib 9.x support
