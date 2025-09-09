@@ -1032,7 +1032,7 @@ eap {
 	#  of MS-CHAPv2 in EAP by Cisco, which FreeRADIUS does not
 	#  currently support.
 	#
-	mschapv2 {
+#	mschapv2 {
 		#  Prior to version 2.1.11, the module never
 		#  sent the MS-CHAP-Error message to the
 		#  client.  This worked, but it had issues
@@ -1050,9 +1050,7 @@ eap {
 		#  working.
 		#
 	#	send_error = no
-<%- if @mschapv2_send_error -%>
-		send_error = <%= @mschapv2_send_error %>
-<%- end -%>
+
 
 		#  Server identifier to send back in the challenge.
 		#  This should generally be the host name of the
@@ -1060,11 +1058,19 @@ eap {
 		#  identify it.
 		#
 	#	identity = "FreeRADIUS"
+
+#	}
+<%- if @eap_mschapv2 -%>
+	mschapv2 {
+<%- if @mschapv2_send_error -%>
+		send_error = <%= @mschapv2_send_error %>
+<%- end -%>
+
 <%- if @mschapv2_identity -%>
 		identity = "<%= @mschapv2_identity %>"
 <%- end -%>
 	}
-
+<%- end -%>
 
 	#  EAP-FAST
 	#

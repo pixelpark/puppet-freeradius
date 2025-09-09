@@ -74,6 +74,7 @@ define freeradius::module::eap (
   Boolean $eap_leap                                                 = true,
   Boolean $eap_gtc                                                  = true,
   Boolean $eap_peap                                                 = true,
+  Boolean $eap_mschapv2                                             = true,
 ) {
   freeradius::module { $name:
     ensure  => $ensure,
