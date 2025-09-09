@@ -461,10 +461,12 @@ eap {
 		#  tls_max_version.
 		#
 	#	disable_tlsv1_2 = no
+<%- unless @tls_min_version or @tls_max_version -%>
 		disable_tlsv1_1 = yes
 		disable_tlsv1 = yes
 <%- if @tls_disable_tlsv1_2 -%>
 		disable_tlsv1_2 = <%= @tls_disable_tlsv1_2 %>
+<%- end -%>
 <%- end -%>
 
 		#  Set min / max TLS version.  Mainly for Debian
