@@ -2,6 +2,10 @@
 
 Please refer to the [GitHub releases page](https://github.com/djjudas21/puppet-freeradius/releases) for the changelog for 4.0.0 and onwards
 
+### 4.0.1+dpx2
+  * Add option to remove mschapv2 inside eap config
+  * Remove disable_tlsv1* from eap config if tls_min_version or tls_max_version are used
+
 ### 4.0.1+dpx1
   * Merge upstream/main into pp-main
 
